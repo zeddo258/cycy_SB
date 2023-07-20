@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="BIG-5" />
+    <title>借用軟體表單 / Software Borrower </title>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+
+
+
+  <div id="optionModal" class="fixed right-0 left-0 top-0 flex h-full w-full  bg-black bg-opacity-50 py-10">
+    <div class="max-h-full w-full max-w-3xl  overflow-y-auto sm:rounded-2xl bg-white flex">
+      <div class="w-full">
+        <div class="m-8 my-20 max-w-[400px] mx-auto">
+          <div class="mb-8">
+            <h1 class="mb-4 text-3xl font-extrabold">請確認以下的資料</h1>
+            <select id="contacts-table" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </select>
+          </div>
+          <div class="space-y-4">
+            <button id="inf_accept" class="p-3 bg-black rounded-full text-white w-full font-semibold">確定</button>
+            <button id="inf_refuse" class="p-3 bg-gray-300 rounded-full text-black w-full font-semibold">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <img class="mx-auto h-16 w-auto" src="logo.png" alt="Your Company">
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">借用軟體查詢</h2>
+    </div>
+
+    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      <form class="space-y-6" action="#" method="POST">
+        <div>
+          <label for="id" class="block text-sm font-medium leading-6 text-gray-900">學號/人事代碼</label>
+          <div class="mt-2">
+            <input id="id" name="id" type="text" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <button id="find" type="button" class = "p-3 bg-indigo-600 rounded-full text-white w-full font-semibold">確定</button>
+          <button id="find_cancel" type="button" onclick = "window.location.href = 'index.html'" class="p-3 bg-gray-300 rounded-full text-black w-full font-semibold">取消</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <script src="./view_return.js"> </script>
+
+</html>
