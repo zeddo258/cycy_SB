@@ -6,6 +6,38 @@
     <link rel="stylesheet" href="output.css" />
   </head>
 
+  <div id="alertModal_non" class="fixed left-0 top-0 flex justify-center items-center h-full w-full  bg-black bg-opacity-50 py-10" style="display:none;">
+    <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-white">
+      <div class="w-full">
+        <div class="m-8 my-20 max-w-[400px] mx-auto">
+          <div class="mb-8">
+            <p class="text-red-500 mb-4 text-2xl font-extrabold">此學號/人事代碼沒紀錄 </p>
+            <p class="text-red-500 mb-4 text-2xl font-extrabold">There are no record </p>
+          </div>
+          <div class="space-y-4">
+            <button id="alertAccept_non" class="p-3 bg-black rounded-full text-white w-full font-semibold">了解</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+  <div id="alertModal_empty" class="fixed left-0 top-0 flex justify-center items-center h-full w-full  bg-black bg-opacity-50 py-10" style="display:none;">
+    <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-white">
+      <div class="w-full">
+        <div class="m-8 my-20 max-w-[400px] mx-auto">
+          <div class="mb-8">
+            <p class="text-red-500 mb-4 text-2xl font-extrabold">請輸入您的資料 </p>
+            <p class="text-red-500 mb-4 text-2xl font-extrabold">(Please enter your information) </p>
+          </div>
+          <div class="space-y-4">
+            <button id="alertAccept_empty" class="p-3 bg-black rounded-full text-white w-full font-semibold">了解</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+
 
 
   <div id="optionModal" class="fixed right-0 left-0 top-0 flex items-center justify-center h-full w-full  bg-black bg-opacity-50 py-10">
@@ -14,7 +46,7 @@
         <div class="m-8 my-20 max-w-[400px] mx-auto">
           <div class="mb-8">
             <h1 class="mb-4 text-3xl font-extrabold">請確認以下的資料</h1>
-            <select id="contacts-table" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select id="contacts-table" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-96  h-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             </select>
           </div>
           <div class="space-y-4">

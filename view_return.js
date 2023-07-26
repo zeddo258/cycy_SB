@@ -1,6 +1,9 @@
 let $ = require('jquery') // Module jquery to select
 let fs = require('fs') // Module fs to rw file
 let modal = document.getElementById('optionModal') 
+let alertNonExist = document.getElementById('alertModal_non')
+let alertEmpty = document.getElementById('alertModal_empty')
+
 const reader =  require('xlsx-color') // Module xlsx
 const file = reader.readFile('./test.xlsx')
 
@@ -34,9 +37,16 @@ document.getElementById("inf_accept").onclick = function() {
 } 
 
 
+$('#alertAccept_non').on('click', () => {
+    alertNonExist.style.display = "none";
+})
+$('#alertAccept_empty').on('click', () => {
+    alertEmpty.style.display = "none";
+})
+
 $('#find').on('click', () => {
     if ( document.getElementById("id").value == "" ) {
-        alert("請輸入學號/人事代碼");
+        alertEmpty.style.display = "flex"; 
     }
 
     else { 
@@ -85,7 +95,7 @@ $('#find').on('click', () => {
         if (found)
             modal.style.display = "flex"; 
         else 
-            alert("此學號/人事代碼沒有紀錄")
+            alertNonExist.style.display = "flex";
     }
     
     
@@ -118,7 +128,7 @@ function match(currentCell, targetCell) {
 function getSoftwareFrom(currentCell) {
     var str = "";
     if (parseInt(currentCell["(32)Windows10"]) > 0 ) str += "(32)Windows10: " + parseInt(currentCell["(32)Windows10"]) + " | "; 
-    if (parseInt(currentCell["(64)Windows10"]) > 0 ) str += "(64)Windows10: " + parseInt(currentCell["(32)Windows10"]) + " | "; 
+    if (parseInt(currentCell["(64)Windows10"]) > 0 ) str += "(64)Windows10: " + parseInt(currentCell["(64)Windows10"]) + " | "; 
     if (parseInt(currentCell["Office2016"]) > 0 ) str += "Office2016: " + parseInt(currentCell["Office2016"]) + " | "; 
     if (parseInt(currentCell["Office2019"]) > 0 ) str += "Office2019: " + parseInt(currentCell["Office2019"]) + " | "; 
     if (parseInt(currentCell["Office2016Mac"]) > 0 )  str += "Office2016Mac: " + parseInt(currentCell["Office2016Mac"]) + " | "; 
