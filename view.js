@@ -2,6 +2,7 @@ let $ = require('jquery') // Module jquery to select
 let fs = require('fs') // Module fs to rw file
 let info = document.getElementById('ifModal')
 let modal = document.getElementById('defaultModal')
+let alertModal = document.getElementById('alertModal')
 
 const reader =  require('xlsx-color') // Module xlsx
 const file = reader.readFile('./test.xlsx')
@@ -13,8 +14,21 @@ document.getElementById("modal0_accept").onclick = function() {
   modal.style.display = "none"; 
 } 
 
+document.getElementById("inf_refuse").onclick = function() {
+    modal.style.display = "none"; 
+    var selection = document.getElementById("contacts-table");
+    // remove all the option to reset form
+    for(var i = 0; i < selection.length; i++ ) {
+        selection.remove(i);
+    }
+} 
 
 
+$('#alertAccept').on('click', () => {
+    alertModal.style.display = "none";
+})
+
+alertModal.style.display = "none"; 
 info.style.display = "none"; 
 
 document.getElementById("inf_accept").onclick = function() {
@@ -50,24 +64,21 @@ $('#submit').on('click', () => {
 
         
         if ( total > 0  && document.getElementById("id").value != "" ) {
-
-            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append('<tr><td>'+"名字："+document.getElementById("name").value)
-            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append('<tr><td>'+"學號："+document.getElementById("id").value)
-            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append('<tr><td>'+"科系："+document.getElementById("dep").value)
-            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append('<tr><td>'+"電話："+document.getElementById("phone").value)
-            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append(getSoftware()) 
-            info.style.display = "block";
+            var str = getSoftware(); 
+            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append(new Option("名字："+document.getElementById("name").value), document.getElementById("name").value);
+            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append(new Option("學號："+document.getElementById("id").value,document.getElementById("id").value));
+            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append(new Option("科系："+document.getElementById("dep").value,document.getElementById("dep").value));
+            $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append(new Option("電話："+document.getElementById("phone").value, document.getElementById("phone").value));
+            for ( var j = 0; j < str.length; j++) {
+        
+                $('#contacts-table').addClass("text-xl leading-relaxed text-gray-500 dark:text-gray-400").append(new Option(str[j], str[j]));
+            }
+            info.style.display = "flex";
         
         }
 
-        else if ( total == 0 && document.getElementById("id").value == "" && document.getElementById("date").value == "" ) 
-            alert("請輸入個人資訊，日期以及您想借用之軟體！！！") 
-        else if ( total == 0 ) 
-            alert ("請輸入您想借用之軟體！！！")
-        else if ( document.getElementById("id").value == "" ) 
-            alert("請輸入個人資訊！！！") 
-        else if ( document.getElementById("date").value == "" )
-            alert("請輸入日期！！！")
+        else if ( total == 0 && document.getElementById("id").value == "" || document.getElementById("date").value == "" ) 
+            alertModal.style.display = "flex"; 
         
 })
 
@@ -80,23 +91,23 @@ function reset() {
  }
 
 function getSoftware() {
-    var str = "";
+    var str = [];
 
-    if (parseInt(document.getElementById("o-19w").value) > 0 ) str += "Office 19(Windows): " + document.getElementById("o-19w").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("o-16w").value) > 0 ) str += "Office 16(Windows): " + + document.getElementById("o-16w").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("o-19m").value) > 0 ) str += "Office 19(Mac): " + + document.getElementById("o-19m").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("o-16m").value) > 0 ) str += "Office 16(Mac): " + + document.getElementById("o-16m").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("w10-32").value) > 0 ) str += "Windows-10(32 bits): " + + document.getElementById("w10-32").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("w10-64").value) > 0 ) str += "Windows-10(64 bits): " + + document.getElementById("w10-64").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("sas93").value) > 0 ) str += "SAS 9.3: " + + document.getElementById("sas93").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("sas-94").value) > 0 ) str += "SAS 9.4: " + + document.getElementById("sas-94").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("vs-15").value) > 0 ) str += "Visual Studio 15: " + + document.getElementById("vs-15").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("vs-13").value) > 0 ) str += "Visual Studio 13: " + + document.getElementById("vs-13").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("vs-12").value) > 0 ) str += "Visual Studio 12: " + + document.getElementById("vs-12").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("ev").value) > 0 ) str += "EVIEWS: " + + document.getElementById("ev").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("nat").value) > 0 ) str += "自然輸入法： " + + document.getElementById("nat").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("wu").value) > 0 ) str += "無瑕米： " + + document.getElementById("wu").value + '<tr><td>'; 
-    if (parseInt(document.getElementById("usb").value) > 0 ) str += "金蝶333: " + + document.getElementById("usb").value + '<tr><td>'; 
+    if (parseInt(document.getElementById("o-19w").value) > 0 ) str.push("Office 19(Windows): " + document.getElementById("o-19w").value) ;  
+    if (parseInt(document.getElementById("o-16w").value) > 0 ) str.push("Office 16(Windows): " + document.getElementById("o-16w").value) ; 
+    if (parseInt(document.getElementById("o-19m").value) > 0 ) str.push("Office 19(Mac): " + document.getElementById("o-19m").value) ; 
+    if (parseInt(document.getElementById("o-16m").value) > 0 ) str.push("Office 16(Mac): " + document.getElementById("o-16m").value) ; 
+    if (parseInt(document.getElementById("w10-32").value) > 0 ) str.push("Windows-10(32 bits): " + document.getElementById("w10-32").value) ; 
+    if (parseInt(document.getElementById("w10-64").value) > 0 ) str.push("Windows-10(64 bits): " + document.getElementById("w10-64").value) ; 
+    if (parseInt(document.getElementById("sas93").value) > 0 ) str.push("SAS 9.3: " + document.getElementById("sas93").value) ; 
+    if (parseInt(document.getElementById("sas-94").value) > 0 ) str.push("SAS 9.4: " + document.getElementById("sas-94").value) ; 
+    if (parseInt(document.getElementById("vs-15").value) > 0 ) str.push("Visual Studio 15: " + document.getElementById("vs-15").value) ; 
+    if (parseInt(document.getElementById("vs-13").value) > 0 ) str.push("Visual Studio 13: " + document.getElementById("vs-13").value) ; 
+    if (parseInt(document.getElementById("vs-12").value) > 0 ) str.push("Visual Studio 12: " + document.getElementById("vs-12").value) ; 
+    if (parseInt(document.getElementById("ev").value) > 0 ) str.push("EVIEWS: " + document.getElementById("ev").value) ; 
+    if (parseInt(document.getElementById("nat").value) > 0 ) str.push("自然輸入法： " + document.getElementById("nat").value) ; 
+    if (parseInt(document.getElementById("wu").value) > 0 ) str.push("無瑕米： " + document.getElementById("wu").value) ; 
+    if (parseInt(document.getElementById("usb").value) > 0 ) str.push("金蝶333: " + document.getElementById("usb").value) ; 
 
     return str
 }

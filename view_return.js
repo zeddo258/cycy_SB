@@ -34,8 +34,6 @@ document.getElementById("inf_accept").onclick = function() {
 } 
 
 
-
-
 $('#find').on('click', () => {
     if ( document.getElementById("id").value == "" ) {
         alert("請輸入學號/人事代碼");
@@ -51,8 +49,7 @@ $('#find').on('click', () => {
         let found = false; 
         num = 0; 
         for ( var i = 0; i <  temp.length; i++ ) {
-            if ( temp[i]["學號"] == document.getElementById("id").value && temp[i]["狀態"] == "" ) {
-
+            if ( parseInt(temp[i]["學號"]) == parseInt(document.getElementById("id").value) && !temp[i]["狀態"]) {
                 var person = {
                     "id": temp[i]["學號"], 
                     "date": temp[i]["日期"], 
@@ -86,7 +83,7 @@ $('#find').on('click', () => {
                           
         } 
         if (found)
-            modal.style.display = "block"; 
+            modal.style.display = "flex"; 
         else 
             alert("此學號/人事代碼沒有紀錄")
     }
@@ -120,21 +117,21 @@ function match(currentCell, targetCell) {
 
 function getSoftwareFrom(currentCell) {
     var str = "";
-    if (parseInt(currentCell["(32)Windows10"]) > 0 ) str += "(32)Windows10: " + parseInt(currentCell["(32)Windows10"]) + "\t"; 
-    if (parseInt(currentCell["(64)Windows10"]) > 0 ) str += "(64)Windows10: " + parseInt(currentCell["(32)Windows10"]) + "\t"; 
-    if (parseInt(currentCell["Office2016"]) > 0 ) str += "Office2016: " + parseInt(currentCell["Office2016"]) + "\t"; 
-    if (parseInt(currentCell["Office2019"]) > 0 ) str += "Office2019: " + parseInt(currentCell["Office2019"]) + "\t"; 
-    if (parseInt(currentCell["Office2016Mac"]) > 0 )  str += "Office2016Mac: " + parseInt(currentCell["Office2016Mac"]) + "\t"; 
-    if (parseInt(currentCell["Office2019Mac"]) > 0 ) str += "Office2019Mac: " + parseInt(currentCell["Office2019Mac"]) + "\t"; 
-    if (parseInt(currentCell["SAS9.3"]) > 0 ) str += "SAS9.3: " + parseInt(currentCell["SAS9.3"]) + "\t"; 
-    if (parseInt(currentCell["SAS9.4"]) > 0 ) str += "SAS9.4: " + parseInt(currentCell["SAS9.4"]) + "\t"; 
-    if (parseInt(currentCell["VisualStudio2012"]) > 0 ) str += "VisualStudio2012: " + parseInt(currentCell["VisualStudio2012"]) + "\t"; 
-    if (parseInt(currentCell["VisualStudio2013"]) > 0 ) str += "VisualStudio2013: " + parseInt(currentCell["VisualStudio2013"]) + "\t"; 
-    if (parseInt(currentCell["VisualStudio2015"]) > 0 ) str += "VisualStudio2015: " + parseInt(currentCell["VisualStudio2015"]) + "\t"; 
-    if (parseInt(currentCell["EVIEWS"]) > 0 ) str += "EVIEWS: " + parseInt(currentCell["EVIEWS"]) + "\t"; 
-    if (parseInt(currentCell["自然輸入法"]) > 0 )  str += "自然輸入法: " + parseInt(currentCell["自然輸入法"]) + "\t"; 
-    if (parseInt(currentCell["無蝦米"]) > 0 ) str += "無蝦米: " + parseInt(currentCell["無蝦米"]) + "\t"; 
-    if (parseInt(currentCell["金蝶333"]) > 0 )  str += "金蝶333: " + parseInt(currentCell["金蝶333"]) + "\t"; 
+    if (parseInt(currentCell["(32)Windows10"]) > 0 ) str += "(32)Windows10: " + parseInt(currentCell["(32)Windows10"]) + " | "; 
+    if (parseInt(currentCell["(64)Windows10"]) > 0 ) str += "(64)Windows10: " + parseInt(currentCell["(32)Windows10"]) + " | "; 
+    if (parseInt(currentCell["Office2016"]) > 0 ) str += "Office2016: " + parseInt(currentCell["Office2016"]) + " | "; 
+    if (parseInt(currentCell["Office2019"]) > 0 ) str += "Office2019: " + parseInt(currentCell["Office2019"]) + " | "; 
+    if (parseInt(currentCell["Office2016Mac"]) > 0 )  str += "Office2016Mac: " + parseInt(currentCell["Office2016Mac"]) + " | "; 
+    if (parseInt(currentCell["Office2019Mac"]) > 0 ) str += "Office2019Mac: " + parseInt(currentCell["Office2019Mac"]) + " | "; 
+    if (parseInt(currentCell["SAS9.3"]) > 0 ) str += "SAS9.3: " + parseInt(currentCell["SAS9.3"]) + " | "; 
+    if (parseInt(currentCell["SAS9.4"]) > 0 ) str += "SAS9.4: " + parseInt(currentCell["SAS9.4"]) + " | "; 
+    if (parseInt(currentCell["VisualStudio2012"]) > 0 ) str += "VisualStudio2012: " + parseInt(currentCell["VisualStudio2012"]) + " | "; 
+    if (parseInt(currentCell["VisualStudio2013"]) > 0 ) str += "VisualStudio2013: " + parseInt(currentCell["VisualStudio2013"]) + " | "; 
+    if (parseInt(currentCell["VisualStudio2015"]) > 0 ) str += "VisualStudio2015: " + parseInt(currentCell["VisualStudio2015"]) + " | "; 
+    if (parseInt(currentCell["EVIEWS"]) > 0 ) str += "EVIEWS: " + parseInt(currentCell["EVIEWS"]) + " | "; 
+    if (parseInt(currentCell["自然輸入法"]) > 0 )  str += "自然輸入法: " + parseInt(currentCell["自然輸入法"]) + " | "; 
+    if (parseInt(currentCell["無蝦米"]) > 0 ) str += "無蝦米: " + parseInt(currentCell["無蝦米"]) + " | "; 
+    if (parseInt(currentCell["金蝶333"]) > 0 )  str += "金蝶333: " + parseInt(currentCell["金蝶333"]) + " | "; 
     return str; 
 }
 
